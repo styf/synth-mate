@@ -106,14 +106,14 @@ void setup() {
 void loop() { // Main loop
 
 
-  while(1){
-    MIDI.sendNoteOff(60,64,1);
-    delay(2000);
-    MIDI.sendNoteOn(60,64,1);
-    delay(2000);
-
-
-    }
+//  while(1){
+//    MIDI.sendNoteOff(60,64,1);
+//    delay(2000);
+//    MIDI.sendNoteOn(60,64,1);
+//    delay(2000);
+//
+//
+//    }
   
 while (!EDIT)
 {
