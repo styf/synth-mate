@@ -60,10 +60,13 @@ enum
   modwheel, 
   pitchbend,  
   velocity,  
-  aftertouch,   
+  aftertouch, 
+  _random,  
+  empty,
 } modcontrol;
 
 struct MOD {
+  int source;
   int destination;
   int min;
   int max;
@@ -101,6 +104,16 @@ void setup() {
 
 
 void loop() { // Main loop
+
+
+  while(1){
+    MIDI.sendNoteOff(60,64,1);
+    delay(2000);
+    MIDI.sendNoteOn(60,64,1);
+    delay(2000);
+
+
+    }
   
 while (!EDIT)
 {
@@ -110,25 +123,27 @@ while (!EDIT)
     MIDI.read();
 
 
-//if (nrpnin.number == 2)
-//{
-//  if (nrpnin.value > 0)
-//  {
-//  digitalWrite(orangeLED, 1);
-//  }else{
-//  digitalWrite(orangeLED, 0);
-//  }
-//}
-//
-//if (nrpnin.number == 4)
-//{
-//  if (nrpnin.value > 0)
-//  {
-//  digitalWrite(greenLED, 1);
-//  }else{
-//  digitalWrite(greenLED, 0);
-//  }
-//}
+switch (modcontrol)
+{
+    case modwheel:
+      MIDI.sendControlChange(mod[modwheel].destination, map(mod[modwheel].source, 0, 127, mod[modwheel].min, mod[modwheel].max), 1);  
+      modcontrol = empty;
+      break;
+    case pitchbend:
+      modcontrol = empty;
+      break;
+    case velocity:
+      modcontrol = empty;
+      break;
+    case aftertouch:
+      modcontrol = empty;
+      break;
+    case _random:
+      modcontrol = empty;
+      break;
+    case empty:
+      break;
+}
 
 
        MIDI.read();
@@ -338,6 +353,8 @@ boolean __delay(unsigned long time) {
 }
 
 void handlePB(byte channel, int bend){
+  MIDI.sendPitchBend(channel, bend);
+  mod[pitchbend].source = bend;
   modcontrol = pitchbend;
 }
 
@@ -368,6 +385,7 @@ switch (number)
       ctlin.value = value;
       if (ctlin.number == 1)
       {
+        mod[modwheel].source = ctlin.value;
         modcontrol = modwheel;
       }
 }
