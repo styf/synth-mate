@@ -44,14 +44,6 @@ struct automation {
 };
 automation automation;
 
-struct modcontrol {
-  uint8_t  cc;
-  uint8_t  min;
-  uint8_t  max;
-  uint8_t  offset;
-};
-modcontrol modcontrol;
-
 struct nrpn {
   int number;
   int value;
@@ -63,8 +55,25 @@ uint8_t ccbuffer[5000];
 
 int nrpnbuffer[4];
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+enum 
+{
+  modwheel, 
+  pitchbend,  
+  velocity,  
+  aftertouch,   
+} modcontrol;
 
+struct MOD {
+  int destination;
+  int min;
+  int max;
+
+};
+MOD mod[4];
+
+
+
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 
 void setup() {
@@ -76,8 +85,8 @@ void setup() {
   MIDI.setHandleNoteOn(handleNoteOn); // This is important!! This command
   MIDI.setHandleNoteOff(handleNoteOff); // This command tells the Midi Library 
   MIDI.setHandleControlChange(handleCC);
+  MIDI.setHandlePitchBend(handlePB);
 //  MIDI.setHandleProgramChange(handlePGM);
-//  MIDI.setHandlePitchBend(handlePB);
 
 //  Serial.begin(31250);
 //  while (!Serial)
@@ -246,7 +255,7 @@ if (EDIT)
 
 
 
-int play_automation(int slot, int rate){
+void play_automation(int slot, int rate){
     if (timer(slot, rate) && notesPressed)
     {
       static int eachkey = 0;
@@ -265,7 +274,6 @@ int play_automation(int slot, int rate){
         j=3;
       }      
     }
-    return 1;
 }
 
 
@@ -329,6 +337,12 @@ boolean __delay(unsigned long time) {
   return false;
 }
 
+void handlePB(byte channel, int bend){
+  modcontrol = pitchbend;
+}
+
+  
+
 void handleCC(byte channel, byte number, byte value){
 
 switch (number)
@@ -352,6 +366,10 @@ switch (number)
       ctlin.channel = channel;
       ctlin.number = number;
       ctlin.value = value;
+      if (ctlin.number == 1)
+      {
+        modcontrol = modwheel;
+      }
 }
 
 
