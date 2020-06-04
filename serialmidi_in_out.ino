@@ -1,4 +1,5 @@
-
+#undef min
+#undef max
 //#include <Arduino.h>
 #include <MIDI.h>  // Add Midi Library
 
@@ -8,29 +9,28 @@
 
 int period = 300;
 unsigned long time_now = 0;
-        bool state;
+bool state;
 
 bool EDIT=0;
 bool RECORD=0;
 
 int notesPressed;
 
-
-struct notein {
+typedef struct {
   uint8_t  pitch;
   uint8_t  velocity;
   uint8_t  channel;
-};
-notein notein;
+} note_struct;
+note_struct notein;
 
-struct ctlin {
+typedef struct {
   uint8_t  value;
   uint8_t  number;
   uint8_t  channel;
-};
-ctlin ctlin;
+}ctl_struct;
+ctl_struct ctlin;
 
-struct automation {
+typedef struct {
   uint8_t  slot;
   uint8_t  cc;
   int      length;
@@ -41,14 +41,14 @@ struct automation {
   uint8_t  mode;
   uint8_t  rate;
   uint8_t  offset;
-};
-automation automation;
+}automation_struct;
+automation_struct automation;
 
-struct nrpn {
+typedef struct {
   int number;
   int value;
-};
-nrpn nrpnin;
+}nrpn_struct;
+nrpn_struct nrpnin;
 
 
 uint8_t ccbuffer[5000];
@@ -65,14 +65,14 @@ enum
   empty,
 } modcontrol;
 
-struct MOD {
+typedef struct  {
   int source;
   int destination;
   int min;
   int max;
-
-};
-MOD mod[4];
+  bool polarity;
+}mod_struct;
+mod_struct mod[4];
 
 
 
@@ -144,7 +144,6 @@ switch (modcontrol)
     case empty:
       break;
 }
-
 
        MIDI.read();
        slot = 0;
