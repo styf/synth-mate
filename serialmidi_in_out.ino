@@ -15,6 +15,7 @@ bool EDIT=0;
 bool RECORD=0;
 
 int notesPressed;
+int slots[32];
 
 typedef struct {
   uint8_t  pitch;
@@ -267,6 +268,36 @@ if (EDIT)
   
 }
 
+///////////////////FUNCTIONS/////////////////////////////////////////////
+
+void find_mod_minmax(int modcontrol){
+    static int previous_value;
+    if (ctlin.number == mod[modcontrol].destination) {
+        if (ctlin.value > mod[modcontrol].max) {
+            mod[modcontrol].max = ctlin.value;
+            mod[modcontrol].polarity = 1;
+        }
+        if (ctlin.value < mod[modcontrol].min) {
+            mod[modcontrol].min = ctlin.value;
+            mod[modcontrol].polarity = 0;
+        }
+        if (ctlin.value > previous_value) {
+            mod[modcontrol].polarity = 1;
+            previous_value = ctlin.value;
+        }
+        if (ctlin.value < previous_value) {
+            mod[modcontrol].polarity = 0;
+            previous_value = ctlin.value;
+        }
+    }else{
+        mod[modcontrol].destination = ctlin.number;
+        mod[modcontrol].min = 127; 
+        mod[modcontrol].max = 0;
+        mod[modcontrol].destination = ctlin.number;
+        mod[modcontrol].polarity = 1;
+    }
+}
+
 
 
 void play_automation(int slot, int rate){
@@ -295,7 +326,7 @@ void play_automation(int slot, int rate){
 
 
 
-int slots[32];
+
 
 int find_slot(uint8_t cc){
     for (int i = 0; i < sizeof(slots)/sizeof(slots[0]); ++i)
