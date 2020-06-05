@@ -64,7 +64,8 @@ enum
 {
   empty,
   modwheel,
-  pitchbend,
+  pitchbend_up,
+  pitchbend_down,
   velocity,
   aftertouch,
   _random,
@@ -126,10 +127,14 @@ void loop() {
         jou = !jou;
         digitalWrite(orangeLED, jou);
         modcontrol = empty;
-        }    
+        }
       }
     
-      MODCONTROL(EDIT);
+      MODCONTROL(EDIT * modcontrol);
+
+      if (EDIT){
+        MIDI.read();
+        }
 //
       PLAY(!EDIT);
 //
@@ -179,12 +184,27 @@ void AUTOMATION(int flag){
 
 void MODCONTROL(int flag){
     if (flag) {
+        static int loc_modcontrol = 0;
         
-        MIDI.read();
-        int loc_modcontrol = modcontrol;
-        mod[modcontrol].destination = 0;
+        if ((modcontrol != pitchbend_up) && (modcontrol != pitchbend_down)) {
+                loc_modcontrol = modcontrol;
+                mod[modcontrol].destination = 0;
+        }
+        else{
+            if (mod[modcontrol].source > 43) {
+                loc_modcontrol = modcontrol;
+                mod[modcontrol].destination = 0;
+            }
+            if (mod[modcontrol].source < -43) {
+                loc_modcontrol = modcontrol;
+                mod[modcontrol].destination = 0;
+            }
+        }
 
-        while(EDIT * loc_modcontrol){
+        ctlin.value_change = 0;
+        MIDI.read();
+
+        while(EDIT * loc_modcontrol * ctlin.value_change){
           MIDI.read();
           find_mod_minmax(loc_modcontrol);
           if(timer(0, 300)){
@@ -200,7 +220,7 @@ void PLAY(int flag){
     if (flag)
     {
         static int slot;
-        int rate =100;
+        int rate = 100;
 
         MIDI.read();
 
@@ -213,7 +233,11 @@ void PLAY(int flag){
             send_modcontrol();
             modcontrol = empty;
             break;
-        case pitchbend:
+        case pitchbend_up:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+        case pitchbend_down:
             send_modcontrol();
             modcontrol = empty;
             break;
@@ -321,12 +345,29 @@ void PLAY(int flag){
 
 void send_modcontrol(){
     if (mod[modcontrol].destination){
-      if (mod[modcontrol].polarity)
-      {
-        MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 0, 127, mod[modcontrol].min, mod[modcontrol].max), 1);
-      }else{
-        MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 127, 0, mod[modcontrol].min, mod[modcontrol].max), 1);
-      }
+        if (modcontrol == pitchbend_up) {
+            if (mod[modcontrol].polarity)
+            {
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 0, 127, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }else{
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 127, 0, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }
+        }
+        if (modcontrol == pitchbend_down) {
+            if (mod[modcontrol].polarity)
+            {
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 0, -127, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }else{
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, -127, 0, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }
+        }else{
+            if (mod[modcontrol].polarity)
+            {
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 0, 127, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }else{
+              MIDI.sendControlChange(mod[modcontrol].destination, map(mod[modcontrol].source, 127, 0, mod[modcontrol].min, mod[modcontrol].max), 1);
+            }
+        }
     }
 }
 
@@ -444,8 +485,19 @@ boolean __delay(unsigned long time) {
 
 void handlePB(byte channel, int bend){
     MIDI.sendPitchBend(channel, bend);
-        modcontrol = pitchbend;
-        mod[modcontrol].source = bend / 127;
+    if (bend >= 0) {
+        modcontrol = pitchbend_up;
+        mod[modcontrol].source = bend/64;
+        if (mod[pitchbend_down].destination) {
+            MIDI.sendControlChange(mod[pitchbend_down].destination, map(127 * mod[pitchbend_down].polarity, 0, 127, mod[pitchbend_down].min, mod[pitchbend_down].max), 1);
+        }
+    }else{
+        modcontrol = pitchbend_down;
+        mod[modcontrol].source = bend/64 + 1;
+        if (mod[pitchbend_up].destination) {
+            MIDI.sendControlChange(mod[pitchbend_up].destination, map(127 * mod[pitchbend_up].polarity, 0, 127, mod[pitchbend_up].min, mod[pitchbend_up].max), 1);
+        }
+    }
 }
 
   
@@ -471,7 +523,7 @@ switch (number)
       nrpnin.number = 128*nrpnbuffer[0] + nrpnbuffer[1];
       nrpnin.value  = 128*nrpnbuffer[2] + nrpnbuffer[3];
       break;
-    case 1:  
+    case 1:
       modcontrol = modwheel;
       mod[modcontrol].source = value;
       break;
