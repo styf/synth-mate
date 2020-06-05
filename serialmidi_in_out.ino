@@ -6,9 +6,14 @@
 #include <stdbool.h>
 
 
-#define LED   13
-#define orangeLED 30
-#define greenLED  28
+#define LED         13
+#define orangeLED   30
+#define greenLED    28
+
+#define NUMBER_OF_SLOTS         16
+#define NUMBER_OF_MODCONTROL     7
+
+
 
 int period = 300;
 unsigned long time_now = 0;
@@ -52,7 +57,10 @@ typedef struct {
   uint8_t  rate;
   uint8_t  offset;
 }automation_struct;
-automation_struct automation;
+automation_struct automation;    //[NUMBER_OF_SLOTS];
+
+automation_struct rates[NUMBER_OF_SLOTS];
+
 
 typedef struct {
   int number;
@@ -100,6 +108,12 @@ void setup() {
 //  Serial.begin(31250);
 //  while (!Serial)
 //  {}
+    
+    
+    for (int i = 0; i < NUMBER_OF_SLOTS; ++i)
+    {
+        rates[i].rate = 100;
+    }
 
 }
 
@@ -133,12 +147,13 @@ void loop() {
       MODCONTROL(EDIT * modcontrol);
 
       if (EDIT){
+        ctlin.value_change = 0;
         MIDI.read();
         }
 //
       PLAY(!EDIT);
 //
-//    AUTOMATION(EDIT);
+      AUTOMATION(EDIT * ctlin.value_change);
     
 }
 
@@ -207,7 +222,7 @@ void MODCONTROL(int flag){
         while(EDIT * loc_modcontrol * ctlin.value_change){
           MIDI.read();
           find_mod_minmax(loc_modcontrol);
-          if(timer(0, 300)){
+          if(timer(0, 150)){
             static bool onoff = 0;
             onoff = !onoff;
             digitalWrite(orangeLED, EDIT*onoff);
@@ -258,7 +273,7 @@ void PLAY(int flag){
 
             MIDI.read();
             slot = 0;
-            if (timer(slot, rate) && notesPressed)
+            if (timer(slot, rates[slot].rate) && notesPressed)
             {
                static int eachkey = 0;
                static int j = 3;
@@ -454,6 +469,20 @@ int find_slot(uint8_t cc){
 }
 
 
+int find_automation_destination(int cc){
+    for (int i = 0; i < sizeof(slots)/sizeof(slots[0]); ++i)
+    {
+        if (cc == slots[i])
+        {
+        printf("cc je ve slotu %d\n", i);
+        return i;
+        break;
+        }
+    }
+    return -1;
+}
+
+
 struct timer_variables {
   unsigned long previousmillis;
   unsigned long currentmillis;
@@ -465,6 +494,8 @@ timer_variables timer_var[32];
 boolean timer(int index, unsigned long time) {
   //static unsigned long previousmillis = 0;
   timer_var[index].currentmillis = millis();
+  //  y = 1.981824 - (-0.744925/-0.0215325)*(1 - e^(+0.0215325*x))
+  //time = 1.981824 - (-0.744925/-0.0215325)*(1 - exp(+0.0215325*time));
   if (timer_var[index].currentmillis - timer_var[index].previousmillis >= time) {
     timer_var[index].previousmillis = timer_var[index].currentmillis;
     return true;
@@ -528,6 +559,28 @@ switch (number)
       mod[modcontrol].source = value;
       break;
     default:
+
+ // _______________________ POTREBA UPRAVIT, R3 MA KNOBY PORAD SPOJENE
+        if (!EDIT){
+          if (find_automation_destination(number) + 1) {
+              rates[find_automation_destination(number)].rate = value;
+              break;
+          }else{
+          ctlin.channel = channel;
+          ctlin.number = number;
+          ctlin.value = value;
+          ctlin.value_change = 1;
+            
+              if (ctlin.number != old_number) {
+                  ctlin.number_change = 1;
+                  old_number = ctlin.number;
+              }else{
+                  ctlin.number_change = 0;
+              } 
+            }
+        }
+        
+        if (EDIT){
       ctlin.channel = channel;
       ctlin.number = number;
       ctlin.value = value;
@@ -538,6 +591,7 @@ switch (number)
             old_number = ctlin.number;
         }else{
             ctlin.number_change = 0;
+        }
         }
         
 
