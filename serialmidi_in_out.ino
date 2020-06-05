@@ -1,5 +1,5 @@
-#undef min
-#undef max
+//#undef min
+//#undef max
 //#include <Arduino.h>
 #include <MIDI.h>  // Add Midi Library
 #include <stdlib.h>
@@ -102,232 +102,222 @@ void setup() {
 
 }
 
-//int PLAY{
-//  ;
-//  return !EDIT;
 
 
 
 
-void loop() { // Main loop
+
+void loop() {
 
 
-//  while(1){
-//    MIDI.sendNoteOff(60,64,1);
-//    delay(2000);
-//    MIDI.sendNoteOn(60,64,1);
-//    delay(2000);
+    if (0){
+      ctlin.value_change = 0;
+      MIDI.read();
+      if (ctlin.value_change){
+        static bool jou = 0;
+        jou = !jou;
+        digitalWrite(greenLED, jou);
+        ctlin.value_change = 0;
+
+        }
+
+      if (modcontrol){
+        static bool jou = 0;
+        jou = !jou;
+        digitalWrite(orangeLED, jou);
+        modcontrol = empty;
+        }    
+      }
+    
+      MODCONTROL(EDIT);
 //
+      PLAY(!EDIT);
 //
-//    }
-    
-    
-// ______________ MODCONTROL
-if (EDIT * modcontrol * 0) {
-    
-    int loc_modcontrol = modcontrol;
-    mod[modcontrol].destination = ctlin.number;
-
-    while(EDIT){
-      MIDI.read();
-      find_mod_minmax(loc_modcontrol);
-      if(timer(0, 300)){
-        static bool onoff = 0;
-        onoff = !onoff;
-        digitalWrite(greenLED, EDIT*onoff);
-        }
-    }
-}
-// ______________ MODCONTROL
-
-
-
-// ______________ PLAY __________________
-while (!EDIT)
-{
-    static int slot;
-    int rate =100;
-
-    MIDI.read();
-
-
-switch (modcontrol)
-{
-    case empty:
-        break;
-    case modwheel:
-        send_modcontrol();
-        modcontrol = empty;
-        break;
-    case pitchbend:
-        send_modcontrol();
-        modcontrol = empty;
-        break;
-    case velocity:
-        send_modcontrol();
-        modcontrol = empty;
-        break;
-    case aftertouch:
-        send_modcontrol();
-        modcontrol = empty;
-        break;
-    case _random:
-        send_modcontrol();
-        modcontrol = empty;
-        break;
-
-}
-
-        MIDI.read();
-        slot = 0;
-        play_automation(slot, rate);
-
-//        if (timer(slot, rate) && notesPressed)
-//        {
-//           static int eachkey = 0;
-//           static int j = 3;
-//                if (eachkey != notesPressed)
-//                {
-//                j = 3;
-//                eachkey = notesPressed;
-//                }
-//           int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
-//           MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
-//            if (j < length)
-//            {
-//            j++;
-//            }else{
-//            j=3;
-//            }
-//        }
-
-   MIDI.read();
-   slot = 1;
-    play_automation(slot, rate);
-
-//       if (timer(slot, rate) && notesPressed)
-//       {
-//       static int eachkey = 0;
-//       static int j = 3;
-//         if (eachkey != notesPressed)
-//         {
-//           j = 3;
-//           eachkey = notesPressed;
-//         }
-//       int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
-//       MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
-//         if (j < length)
-//         {
-//           j++;
-//         }else{
-//           j=3;
-//         }
-//       }
-
-      MIDI.read();
-      slot = 2;
-      if (timer(slot, rate) && notesPressed)
-      {
-      static int eachkey = 0;
-      static int j = 3;
-        if (eachkey != notesPressed)
-        {
-          j = 3;
-          eachkey = notesPressed;
-        }
-      int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
-      MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
-        if (j < length)
-        {
-          j++;
-        }else{
-          j=3;
-        }
-      }
-
-      MIDI.read();
-      slot = 3;
-      if (timer(slot, rate) && notesPressed)
-      {
-      static int eachkey = 0;
-      static int j = 3;
-        if (eachkey != notesPressed)
-        {
-          j = 3;
-          eachkey = notesPressed;
-        }
-      int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
-      MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
-        if (j < length)
-        {
-          j++;
-        }else{
-          j=3;
-        }
-    }
-}
-// ______________ PLAY __________________
-
-
-
-// _________ AUTOMATION ________________________
-if (EDIT)
-  {
-
-    while (EDIT){
-      MIDI.read();
-         digitalWrite(orangeLED, ctlin.number_change);
-         
-         if(ctlin.value_change){
-            ctlin.value_change = 0;
-          }
-
-      }
-
-      
-    MIDI.read();
-
-      automation.cc = ctlin.number;
-      automation.slot = find_slot(automation.cc);
-      automation.length = 3;
-      if (automation.slot + 1) {
-          ccbuffer[automation.slot * 1000] = 0;
-      }
-
-    
-    while (RECORD * EDIT)
-    {
-      MIDI.read();
-      if(timer(1, 100)){
-        ccbuffer[automation.slot * 1000 + automation.length] = ctlin.value;
-        ccbuffer[automation.slot * 1000] = automation.cc;
-        ccbuffer[automation.slot * 1000 + 1] = automation.length >> 8;
-        ccbuffer[automation.slot * 1000 + 2] = automation.length;
-        automation.length++;
-
-        state = !state;
-        digitalWrite(orangeLED, EDIT*state);
-        }
-
-      if(timer(0, 300)){
-        static bool onoff = 0;
-        onoff = !onoff;
-        digitalWrite(greenLED, EDIT*onoff);
-        }
-    }
-  }
-//_________ AUTOMATION ________________________
-
-   
+//    AUTOMATION(EDIT);
     
 }
-
-
-
-
-
 
 //_________________FUNCTIONS____________________________________________
+
+
+void AUTOMATION(int flag){
+    if (flag)
+    {
+      MIDI.read();
+
+        automation.cc = ctlin.number;
+        automation.slot = find_slot(automation.cc);
+        automation.length = 3;
+        if (automation.slot + 1) {
+            ccbuffer[automation.slot * 1000] = 0;
+        }
+
+      
+      while (RECORD * EDIT)
+      {
+        MIDI.read();
+        if(timer(1, 100)){
+          ccbuffer[automation.slot * 1000 + automation.length] = ctlin.value;
+          ccbuffer[automation.slot * 1000] = automation.cc;
+          ccbuffer[automation.slot * 1000 + 1] = automation.length >> 8;
+          ccbuffer[automation.slot * 1000 + 2] = automation.length;
+          automation.length++;
+
+          state = !state;
+          digitalWrite(orangeLED, EDIT*state);
+          }
+
+        if(timer(0, 300)){
+          static bool onoff = 0;
+          onoff = !onoff;
+          digitalWrite(greenLED, EDIT*onoff);
+          }
+      }
+    }
+
+}
+
+void MODCONTROL(int flag){
+    if (flag) {
+        
+        MIDI.read();
+        int loc_modcontrol = modcontrol;
+        mod[modcontrol].destination = 0;
+
+        while(EDIT * loc_modcontrol){
+          MIDI.read();
+          find_mod_minmax(loc_modcontrol);
+          if(timer(0, 300)){
+            static bool onoff = 0;
+            onoff = !onoff;
+            digitalWrite(orangeLED, EDIT*onoff);
+            }
+        }
+    }
+}
+
+void PLAY(int flag){
+    if (flag)
+    {
+        static int slot;
+        int rate =100;
+
+        MIDI.read();
+
+
+    switch (modcontrol)
+    {
+        case empty:
+            break;
+        case modwheel:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+        case pitchbend:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+        case velocity:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+        case aftertouch:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+        case _random:
+            send_modcontrol();
+            modcontrol = empty;
+            break;
+
+    }
+
+            MIDI.read();
+            slot = 0;
+            if (timer(slot, rate) && notesPressed)
+            {
+               static int eachkey = 0;
+               static int j = 3;
+                    if (eachkey != notesPressed)
+                    {
+                    j = 3;
+                    eachkey = notesPressed;
+                    }
+               int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
+               MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
+                if (j < length)
+                {
+                j++;
+                }else{
+                j=3;
+                }
+            }
+
+        MIDI.read();
+        slot = 1;
+           if (timer(slot, rate) && notesPressed)
+           {
+           static int eachkey = 0;
+           static int j = 3;
+             if (eachkey != notesPressed)
+             {
+               j = 3;
+               eachkey = notesPressed;
+             }
+           int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
+           MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
+             if (j < length)
+             {
+               j++;
+             }else{
+               j=3;
+             }
+           }
+
+          MIDI.read();
+          slot = 2;
+          if (timer(slot, rate) && notesPressed)
+          {
+          static int eachkey = 0;
+          static int j = 3;
+            if (eachkey != notesPressed)
+            {
+              j = 3;
+              eachkey = notesPressed;
+            }
+          int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
+          MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
+            if (j < length)
+            {
+              j++;
+            }else{
+              j=3;
+            }
+          }
+
+          MIDI.read();
+          slot = 3;
+          if (timer(slot, rate) && notesPressed)
+          {
+          static int eachkey = 0;
+          static int j = 3;
+            if (eachkey != notesPressed)
+            {
+              j = 3;
+              eachkey = notesPressed;
+            }
+          int length = (ccbuffer[slot * 1000 + 1] << 8) + ccbuffer[slot * 1000 + 2];
+          MIDI.sendControlChange(ccbuffer[slot * 1000], ccbuffer[slot * 1000 + j], 1);
+            if (j < length)
+            {
+              j++;
+            }else{
+              j=3;
+            }
+        }
+    }
+}
+
 
 void send_modcontrol(){
     if (mod[modcontrol].destination){
@@ -463,7 +453,6 @@ void handlePB(byte channel, int bend){
 void handleCC(byte channel, byte number, byte value){
 
 static int old_number;
-
       
 switch (number)
 {
@@ -482,29 +471,24 @@ switch (number)
       nrpnin.number = 128*nrpnbuffer[0] + nrpnbuffer[1];
       nrpnin.value  = 128*nrpnbuffer[2] + nrpnbuffer[3];
       break;
+    case 1:  
+      modcontrol = modwheel;
+      mod[modcontrol].source = value;
+      break;
     default:
       ctlin.channel = channel;
       ctlin.number = number;
       ctlin.value = value;
-
-        // number_change
+      ctlin.value_change = 1;
+        
         if (ctlin.number != old_number) {
             ctlin.number_change = 1;
             old_number = ctlin.number;
         }else{
             ctlin.number_change = 0;
         }
+        
 
-        // value_change
-            ctlin.value_change = 1;
-
-
-
-      if (ctlin.number == 1)
-      {
-        modcontrol = modwheel;
-        mod[modcontrol].source = ctlin.value;
-      }
 }
 
 
