@@ -13792,7 +13792,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Samtec_LSHM-107-xx.x-x-DV-N"
+		(property "Footprint" ""
 			(at 185.42 165.1 0)
 			(effects
 				(font
