@@ -7112,28 +7112,6 @@
 			)
 		)
 	)
-	(global_label "USB_DP"
-		(shape input)
-		(at 345.44 106.68 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2a23ced1-25c4-40c6-99e3-240dd2d573d4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 345.44 116.9828 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "3V3"
 		(shape input)
 		(at 185.42 147.32 90)
@@ -8142,28 +8120,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "USB_DM"
-		(shape input)
-		(at 345.44 88.9 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c49b5947-d40a-4e4c-84ae-aee584bf9fa7")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 345.44 78.4158 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
