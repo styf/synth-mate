@@ -1748,7 +1748,7 @@
 	(footprint "footprints:RSE10"
 		(layer "F.Cu")
 		(uuid "1ef11bc9-f62c-40a0-a90d-2f61586e4c31")
-		(at 174.7726 54.249999)
+		(at 99.2274 35.25)
 		(tags "TS3USB221ARSER ")
 		(property "Reference" "U2"
 			(at 0 0 0)
