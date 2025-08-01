@@ -6438,12 +6438,6 @@
 		(uuid "47679e95-db21-4ea9-8423-042f87c46068")
 	)
 	(junction
-		(at 359.41 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4d5717cf-9173-4cf3-b12c-0e5331935c5f")
-	)
-	(junction
 		(at 217.17 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6478,12 +6472,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "78628a9c-32e0-4955-89c4-922ddb721d5b")
-	)
-	(junction
-		(at 317.5 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7aec1598-eae2-448c-9d01-9a02b37d9c5d")
 	)
 	(junction
 		(at 469.9 120.65)
@@ -6701,16 +6689,6 @@
 	)
 	(wire
 		(pts
-			(xy 359.41 77.47) (xy 359.41 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1e6f7873-e3f4-4eda-a42a-2c2b5e29f376")
-	)
-	(wire
-		(pts
 			(xy 111.76 55.88) (xy 111.76 53.34)
 		)
 		(stroke
@@ -6868,16 +6846,6 @@
 			(type default)
 		)
 		(uuid "569e0bdc-278f-42cb-b44f-bba7fe0bfa82")
-	)
-	(wire
-		(pts
-			(xy 293.37 81.28) (xy 317.5 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56cc32fd-11d7-43b7-b23f-4efadb5d723c")
 	)
 	(wire
 		(pts
@@ -7048,16 +7016,6 @@
 			(type default)
 		)
 		(uuid "84d078da-afa0-4fb5-bf29-a143df3a4375")
-	)
-	(wire
-		(pts
-			(xy 359.41 78.74) (xy 367.03 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "853673f2-95aa-4354-9c4b-6ba2cda7306c")
 	)
 	(wire
 		(pts
@@ -7251,26 +7209,6 @@
 	)
 	(wire
 		(pts
-			(xy 293.37 78.74) (xy 359.41 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a707018b-01dc-49e5-8598-cc53c0623fba")
-	)
-	(wire
-		(pts
-			(xy 359.41 78.74) (xy 359.41 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "abd8ba79-e86d-4ca9-b6f4-9897ed532b3a")
-	)
-	(wire
-		(pts
 			(xy 280.67 50.8) (xy 289.56 50.8)
 		)
 		(stroke
@@ -7391,16 +7329,6 @@
 	)
 	(wire
 		(pts
-			(xy 317.5 81.28) (xy 326.39 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c7423caf-7345-4a77-abb9-223a03516fbc")
-	)
-	(wire
-		(pts
 			(xy 289.56 167.64) (xy 299.72 167.64)
 		)
 		(stroke
@@ -7498,16 +7426,6 @@
 			(type default)
 		)
 		(uuid "e388ce66-e7d1-4655-b65a-b1eecc6c8cd7")
-	)
-	(wire
-		(pts
-			(xy 317.5 77.47) (xy 317.5 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e9b6b824-8f99-4e68-8b4e-1f9328a976a5")
 	)
 	(wire
 		(pts
@@ -7997,7 +7915,7 @@
 	)
 	(global_label "LPUART_TX"
 		(shape input)
-		(at 367.03 78.74 0)
+		(at 293.37 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8007,7 +7925,7 @@
 		)
 		(uuid "207ea9e2-30ef-4721-b962-c027890b5887")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 380.1147 78.74 0)
+			(at 306.4547 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8547,7 +8465,7 @@
 	)
 	(global_label "LPUART_RX"
 		(shape input)
-		(at 326.39 81.28 0)
+		(at 293.37 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8557,7 +8475,7 @@
 		)
 		(uuid "6af5e18c-5057-4e83-bd13-3a3c999461a3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 339.7771 81.28 0)
+			(at 306.7571 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9557,28 +9475,6 @@
 			)
 		)
 	)
-	(global_label "3V3"
-		(shape input)
-		(at 317.5 69.85 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ffb649de-76cf-485b-9d29-2f2b89237c6e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 323.9928 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(symbol
 		(lib_id "Device:C_Polarized")
 		(at 289.56 54.61 0)
@@ -10183,73 +10079,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 359.41 73.66 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1d6decb0-8807-43aa-b9ae-a02329852e60")
-		(property "Reference" "R16"
-			(at 361.95 73.66 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "220R"
-			(at 364.49 73.66 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 361.188 73.66 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 359.41 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 359.41 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d4e58a4f-23a4-4701-a960-bba8f664f430")
-		)
-		(pin "2"
-			(uuid "9e958486-c9ea-4f3e-8ecb-3e845c1ed830")
-		)
-		(instances
-			(project "synthmate_L432"
-				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
-					(reference "R16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Polarized")
 		(at 302.26 54.61 0)
 		(unit 1)
@@ -10450,72 +10279,6 @@
 			(project "synthmate_L432"
 				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 359.41 87.63 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2e9cc016-f4c1-4336-8f25-5e5aef89357e")
-		(property "Reference" "#PWR035"
-			(at 359.41 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 359.41 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 359.41 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 359.41 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 359.41 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fe4662ed-f9db-4057-bc67-420e06a4a49e")
-		)
-		(instances
-			(project "synthmate_L432"
-				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
-					(reference "#PWR035")
 					(unit 1)
 				)
 			)
@@ -16011,75 +15774,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:BAT54J")
-		(at 317.5 73.66 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f18636e4-19be-4dd2-856b-ab7670210c87")
-		(property "Reference" "D3"
-			(at 320.294 76.708 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BAT54J"
-			(at 320.04 74.6124 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323F"
-			(at 313.055 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAT54J.pdf"
-			(at 317.5 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "30V 200mA Schottky diode, SOD-323F"
-			(at 317.5 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "38c8b4d0-7146-49d4-9742-444986b1015c")
-		)
-		(pin "2"
-			(uuid "90dc1060-9b79-4e11-ae4a-0e071cdd6373")
-		)
-		(instances
-			(project ""
-				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
-					(reference "D3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 44.45 99.06 90)
 		(mirror x)
@@ -16778,73 +16472,6 @@
 			(project ""
 				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
 					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 359.41 83.82 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ff879d1f-3efa-468e-ac33-e88f1803bd90")
-		(property "Reference" "R17"
-			(at 361.95 83.82 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "220R"
-			(at 364.49 83.82 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 361.188 83.82 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 359.41 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 359.41 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6d131db8-deec-4f23-b5cc-86d05af49e40")
-		)
-		(pin "2"
-			(uuid "559d741a-525e-4dd3-8a63-c610478cdc6a")
-		)
-		(instances
-			(project "synthmate_L432"
-				(path "/51b18779-52cf-4d77-bac0-6803e3c57cb1"
-					(reference "R17")
 					(unit 1)
 				)
 			)

@@ -506,7 +506,7 @@
       "plot": "gerber/",
       "pos_files": "",
       "specctra_dsn": "C:/Users/AdminScioSkola/Documents/synthmate_L432.dsn",
-      "step": "",
+      "step": "synthmate_L432.step",
       "svg": "",
       "vrml": ""
     },
