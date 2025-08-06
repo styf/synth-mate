@@ -16019,12 +16019,12 @@
 	(symbol
 		(lib_id "Switch:SW_Push")
 		(at 26.67 99.06 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e27f0fae-a32a-4fd8-be0d-4b00cd9a5a2f")
 		(property "Reference" "SW3"
 			(at 26.67 91.44 0)
