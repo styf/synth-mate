@@ -1748,7 +1748,7 @@
 	(footprint "footprints:RSE10"
 		(layer "F.Cu")
 		(uuid "1ef11bc9-f62c-40a0-a90d-2f61586e4c31")
-		(at 174.7726 54.249999)
+		(at 99.2274 35.25)
 		(tags "TS3USB221ARSER ")
 		(property "Reference" "U2"
 			(at 0 0 0)
@@ -9163,7 +9163,7 @@
 		(property "Reference" "R2"
 			(at -2.8 -0.05 0)
 			(layer "F.SilkS")
-			(uuid "8942c881-4a82-41e6-8241-09d1dfe4bdd7")
+			(uuid "bc3b113e-0a80-4cc6-8380-7c5f7b856489")
 			(effects
 				(font
 					(size 1 1)
@@ -9174,7 +9174,7 @@
 		(property "Value" "5k1"
 			(at 0 1.43 0)
 			(layer "F.Fab")
-			(uuid "bc523ee2-d8ef-4c11-804f-41c2c13722ed")
+			(uuid "4d349494-d4a4-4ade-80f0-79281ef7d281")
 			(effects
 				(font
 					(size 1 1)
@@ -9186,7 +9186,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4e8c9796-bf04-4f6f-9a12-55799deb0486")
+			(uuid "e34f37f1-068e-41ff-86bb-b4f6c3bd4bb0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9198,7 +9198,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "46abb3db-28f9-4a06-a1d6-85aa7681ef47")
+			(uuid "ea218bae-315d-4db2-aa47-1be7432c3a49")
 			(effects
 				(font
 					(size 1.27 1.27)
