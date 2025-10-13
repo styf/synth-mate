@@ -1,4 +1,4 @@
-25595825291543738
+25614717302067394
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -1686,6 +1686,13 @@ SWITCH SMD KSA SW
 0
 5
 5
+Button_Switch_THT
+Marquardt_6450
+
+
+0
+2
+2
 Button_Switch_THT
 Nidec_Copal_SH-7010C
 4-bit rotary coded switch, through-hole, https://www.nidec-copal-electronics.com/e/catalog/switch/sh-7000.pdf
@@ -102640,3 +102647,10 @@ Varistor VF
 0
 2
 2
+footprints
+RSE10
+
+TS3USB221ARSER 
+0
+10
+10
