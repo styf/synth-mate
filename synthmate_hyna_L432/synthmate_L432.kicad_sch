@@ -8160,7 +8160,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 160.02 43.18 0)
 			(effects
 				(font
@@ -8168,7 +8168,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 160.02 49.53 0)
 			(effects
 				(font
@@ -8948,7 +8948,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "STM32L432KCUx"
+		(property "Value" "STM32L432KBU6"
 			(at 282.8133 123.19 0)
 			(effects
 				(font
@@ -9651,7 +9651,7 @@
 				)
 			)
 		)
-		(property "Value" "USB_C_synthmate"
+		(property "Value" "USB4105-GF-A-120"
 			(at 518.16 82.55 0)
 			(effects
 				(font
@@ -11073,7 +11073,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 453.39 256.5399 0)
 			(effects
 				(font
@@ -11082,7 +11082,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 447.04 255.27 0)
 			(effects
 				(font
@@ -11179,7 +11179,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "D_Schottky"
+		(property "Value" "1N5819WS"
 			(at 341.63 97.4724 90)
 			(effects
 				(font
@@ -11188,7 +11188,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0603_1608Metric"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 339.09 96.52 0)
 			(effects
 				(font
@@ -11206,7 +11206,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Schottky diode"
+		(property "Description" "1N5819WS"
 			(at 339.09 96.52 0)
 			(effects
 				(font
@@ -11752,7 +11752,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 54.61 43.18 0)
 			(effects
 				(font
@@ -11760,7 +11760,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 54.61 49.53 0)
 			(effects
 				(font
@@ -12617,7 +12617,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "D_Schottky"
+		(property "Value" "1N5819WS"
 			(at 255.27 172.4024 90)
 			(effects
 				(font
@@ -12626,7 +12626,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0603_1608Metric"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 252.73 171.45 0)
 			(effects
 				(font
@@ -12821,7 +12821,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 100.33 102.87 0)
 			(effects
 				(font
@@ -12829,7 +12829,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 100.33 109.22 0)
 			(effects
 				(font
@@ -13260,7 +13260,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "M95256-WMN6P"
+		(property "Value" "M95M04-DRMN6TP"
 			(at 352.6633 128.27 0)
 			(effects
 				(font
@@ -13347,7 +13347,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 160.02 69.85 0)
 			(effects
 				(font
@@ -13355,7 +13355,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 160.02 76.2 0)
 			(effects
 				(font
@@ -14104,15 +14104,15 @@
 		(fields_autoplaced yes)
 		(uuid "eaec7cbd-dfad-4ded-8c54-821e21deb30e")
 		(property "Reference" "U4"
-			(at 344.17 69.7798 0)
+			(at 345.44 69.7798 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SN74LV1T34DBV"
-			(at 344.17 72.3198 0)
+		(property "Value" "SN74LV1T34DBVR"
+			(at 345.44 72.3198 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14323,7 +14323,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 100.33 139.7 0)
 			(effects
 				(font
@@ -14331,7 +14331,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 100.33 146.05 0)
 			(effects
 				(font
@@ -14427,7 +14427,7 @@
 				)
 			)
 		)
-		(property "Value" "74LV14"
+		(property "Value" "SN74LV14APWR"
 			(at 100.33 184.15 0)
 			(effects
 				(font
@@ -14435,7 +14435,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:Texas_S-PVQFN-N14"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 100.33 190.5 0)
 			(effects
 				(font
